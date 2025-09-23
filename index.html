@@ -61,11 +61,17 @@
         margin-right: auto;
         
     }
-    .responsive-pdf-container {
-  width: 100%; /* Use the full available width */
-  height: 80vh; /* Set height to 80% of the viewport height */
-  border: none; /* Optional: Removes the default iframe border */
+    .menu-button {
+  display: inline-block;
+  padding: 15px 30px;
+  background-color: #8a2be2; /* Example color */
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 5px;
+  text-align: center;
 }
+    
     </style>
 </head>
 <body class="antialiased" class="bg-gray-100 flex items-center justify-center min-h-screen">
@@ -187,7 +193,8 @@ Set in a warm, relaxed atmosphere, dining at Drea’s feels like a visit with No
         });
     </script>
 
-                  <iframe src="Drea's Menu.pdf#toolbar=0&navpanes=0" class="responsive-pdf-container" width="50%" height="800px"></iframe>
+                  <iframe src="Drea's Menu.pdf#toolbar=0&navpanes=0" width="50%" height="800px"></iframe>
+                  <a href="Drea's Menu.pdf" class="menu-button">View Drea's Menu</a>
 
                <!-- <div class="max-w-4xl mx-auto">
                     Appetizers 
