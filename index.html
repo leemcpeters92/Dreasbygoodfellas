@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drea's by Goodfellas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles to extend Tailwind */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5DC; /* Cream */
+            color: #4A2E2E; /* Dark Brown */
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .bg-maroon { background-color: #800000; }
+        .text-maroon { color: #800000; }
+        .bg-cream { background-color: #F5F5DC; }
+        .text-cream { color: #F5F5DC; }
+        .bg-brown { background-color: #A52A2A; } /* A lighter, warm brown */
+        .text-brown { color: #A52A2A; }
+        .border-maroon { border-color: #800000; }
+        .nav-link {
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+        }
+        .nav-link.active {
+            color: #800000; /* Maroon */
+            border-bottom: 2px solid #800000;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .btn-primary {
+            @apply bg-maroon text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-opacity-90 transition-transform transform hover:scale-105;
+        }
+        /* Custom scrollbar for a cleaner look (optional) */
+        .image-container::-webkit-scrollbar {
+            display: none; /* For Chrome, Safari, and Opera */
+        }
+        .image-container {
+            -ms-overflow-style: none;  /* For IE and Edge */
+            scrollbar-width: none;  /* For Firefox */
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="antialiased" class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <!-- Header Section -->
+    <header class="bg-cream shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center space-x-2">
+                <!--<svg class="h-10 w-10 text-maroon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v11.494m-9-5.747h18" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.482 6.965c-1.367-3.83-5.063-6.465-9.482-6.465s-8.115 2.635-9.482 6.465c.6 .226 1.23.393 1.884.502C4.58 4.25 7.974 2.5 12 2.5c4.025 0 7.42 1.75 8.598 5.013.654-.11 1.284-.277 1.884-.548zM12 21.5c-4.026 0-7.42-1.75-8.598-5.013-.654.11-1.284.276-1.884.548 1.367 3.83 5.063 6.465 9.482 6.465s8.115-2.635 9.482-6.465c-.6-.226-1.23-.393-1.884-.502C19.42 19.25 16.026 21.5 12 21.5z" />
+                </svg>-->
+                <img src="/images/b4ba4db8-e950-4b0b-bfd7-9f847c27f7d1.png.png" alt="" style="width: 100px; height: 100px;">
+                <!--<span class="text-2xl font-bold text-maroon font-serif"></span>-->
+            </a>
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="nav-link font-semibold text-gray-700 hover:text-maroon border-b-2 border-transparent pb-1 active" onclick="showSection('about', this)">About</a>
+                <a href="#menu" class="nav-link font-semibold text-gray-700 hover:text-maroon border-b-2 border-transparent pb-1" onclick="showSection('menu', this)">Menu</a>
+                <a href="#reservations" class="nav-link font-semibold text-gray-700 hover:text-maroon border-b-2 border-transparent pb-1" onclick="showSection('reservations', this)">Reservations</a>
+                <a href="#hours-location" class="nav-link font-semibold text-gray-700 hover:text-maroon border-b-2 border-transparent pb-1" onclick="showSection('hours-location', this)">Hours & Location</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-maroon focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#about" class="block py-2 text-gray-700 font-semibold hover:text-maroon" onclick="showSection('about', this); closeMobileMenu();">About</a>
+            <a href="#menu" class="block py-2 text-gray-700 font-semibold hover:text-maroon" onclick="showSection('menu', this); closeMobileMenu();">Menu</a>
+            <a href="#reservations" class="block py-2 text-gray-700 font-semibold hover:text-maroon" onclick="showSection('reservations', this); closeMobileMenu();">Reservations</a>
+            <a href="#hours-location" class="block py-2 text-gray-700 font-semibold hover:text-maroon" onclick="showSection('hours-location', this); closeMobileMenu();">Hours & Location</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-6 md:p-12">
+        
+        <!-- About Section -->
+        <section id="about" class="content-section active">
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+               
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <div class="md:w-1/2">
+                        <img src="/images/b4ba4db8-e950-4b0b-bfd7-9f847c27f7d1.png.png" alt="Restaurant Interior" class="rounded-lg  w-full h-auto">
+                    </div>
+                    <div class="md:w-1/2 text-lg text-gray-700 leading-relaxed">
+                        <p class="mb-4" style="font-family: Karla;"><br><br><br>Chef Gerry Iannaccone makes his triumphant return to Branford alongside his life partner, Andrea “Drea” Coppola. Together, they return to their roots with Drea’s by Goodfellas—a dining experience that blends tradition, warmth, and hospitality.
+
+With a combined 50 years in the restaurant industry, Gerry and Andrea honor the Goodfellas legacy by presenting exquisite dishes prepared with simple, authentic ingredients and served with genuine care. From hand-crafted pastas and rich, traditional sauces to indulgent house-made desserts, every plate tells a story of heritage, love, and flavor. At Drea’s, we bring the heart of Italy to your table.
+
+Set in a warm, relaxed atmosphere, dining at Drea’s feels like a visit with Nonna—where stories are shared, laughter fills the air, and every meal becomes a memory. More than just a restaurant, Drea’s by Goodfellas is a place to gather, celebrate, and savor the timeless flavors of Italy.</p>
+                       <!-- <p class="mb-4">Our chefs draw inspiration from classic recipes, infusing them with a modern twist and a commitment to locally-sourced, seasonal ingredients. Each dish is a celebration of flavor, texture, and creativity.</p>
+                        <p>We invite you to join us for an evening of fine dining in a setting that is both sophisticated and comfortable. Thank you for being a part of our story.</p>-->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu" class="content-section">
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <h1 class="text-4xl font-bold text-maroon mb-8 text-center">Our Menu</h1>
+                <div class="w-full max-w-4xl mx-auto p-4 md:p-6">
+       
+        <div class="relative group">
+            <!-- Left Arrow -->
+            <button id="scroll-left" class="absolute top-1/2 left-0 -translate-y-1/2 bg-white/80 backdrop-blur-sm text-gray-800 rounded-full p-2 m-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none hover:bg-white shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+
+            <!-- Image Container -->
+            <div id="image-container" class="image-container flex overflow-x-auto space-x-4 p-4 rounded-lg bg-white shadow-inner">
+                <!-- Images will be added dynamically, but here are placeholders -->
+                 <img src="/images/1601582_778668242169721_3150877464671757336_n[1].jpg" alt="A beautiful landscape" class="flex-none w-3/4 md:w-1/3 rounded-lg shadow-md object-cover transform transition-transform duration-300 hover:scale-105">
+                 <img src="/images/meatballs.jpg" alt="Modern architecture" class="flex-none w-3/4 md:w-1/3 rounded-lg shadow-md object-cover transform transition-transform duration-300 hover:scale-105">
+                 <img src="/images/Fudge cake.jpg" alt="Close up of nature" class="flex-none w-3/4 md:w-1/3 rounded-lg shadow-md object-cover transform transition-transform duration-300 hover:scale-105">
+                <!-- <img src="https://placehold.co/600x400/f1c40f/ffffff?text=Cityscape" alt="A bustling cityscape" class="flex-none w-3/4 md:w-1/3 rounded-lg shadow-md object-cover transform transition-transform duration-300 hover:scale-105">
+                 <img src="https://placehold.co/600x400/9b59b6/ffffff?text=Travel" alt="A travel destination" class="flex-none w-3/4 md:w-1/3 rounded-lg shadow-md object-cover transform transition-transform duration-300 hover:scale-105">
+                 <img src="https://placehold.co/600x400/1abc9c/ffffff?text=Wildlife" alt="An animal in the wild" class="flex-none w-3/4 md:w-1/3 rounded-lg shadow-md object-cover transform transition-transform duration-300 hover:scale-105">
+                 <img src="https://placehold.co/600x400/e67e22/ffffff?text=Food" alt="Delicious food" class="flex-none w-3/4 md:w-1/3 rounded-lg shadow-md object-cover transform transition-transform duration-300 hover:scale-105">-->
+            </div>
+
+            <!-- Right Arrow -->
+            <button id="scroll-right" class="absolute top-1/2 right-0 -translate-y-1/2 bg-white/80 backdrop-blur-sm text-gray-800 rounded-full p-2 m-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 focus:outline-none hover:bg-white shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const imageContainer = document.getElementById('image-container');
+        const scrollLeftBtn = document.getElementById('scroll-left');
+        const scrollRightBtn = document.getElementById('scroll-right');
+
+        // Function to scroll the container
+        const scrollGallery = (scrollOffset) => {
+            // We get the width of the first image to determine a good scroll amount.
+            // This makes it responsive.
+            const imageWidth = imageContainer.querySelector('img').clientWidth + 16; // 16px for the space-x-4 margin
+            imageContainer.scrollLeft += scrollOffset * imageWidth;
+        };
+
+        // Event listeners for the buttons
+        scrollLeftBtn.addEventListener('click', () => {
+            scrollGallery(-1);
+        });
+
+        scrollRightBtn.addEventListener('click', () => {
+            scrollGallery(1);
+        });
+    </script>
+
+                <div class="max-w-4xl mx-auto">
+                    <!-- Appetizers -->
+                    <div>
+                        <h2 class="text-3xl font-semibold text-brown mb-4 border-b-2 border-maroon pb-2">Appetizers</h2>
+                        <div class="space-y-4">
+                            <div class="flex justify-between">
+                                <h3 class="text-xl font-bold">Burrata Caprese</h3>
+                                <p class="text-xl text-maroon font-bold">$18</p>
+                            </div>
+                            <p class="text-gray-600">Heirloom tomatoes, fresh basil, balsamic glaze, and extra virgin olive oil.</p>
+                        </div>
+                        <div class="space-y-4 mt-4">
+                            <div class="flex justify-between">
+                                <h3 class="text-xl font-bold">Seared Scallops</h3>
+                                <p class="text-xl text-maroon font-bold">$24</p>
+                            </div>
+                            <p class="text-gray-600">With a brown butter sage sauce and lemon zest.</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                            <div class="flex justify-between">
+                                <h3 class="text-xl font-bold">Burrata Caprese</h3>
+                                <p class="text-xl text-maroon font-bold">$18</p>
+                            </div>
+                            <p class="text-gray-600">Heirloom tomatoes, fresh basil, balsamic glaze, and extra virgin olive oil.</p>
+                        </div>
+                        <div class="space-y-4 mt-4">
+                            <div class="flex justify-between">
+                                <h3 class="text-xl font-bold">Seared Scallops</h3>
+                                <p class="text-xl text-maroon font-bold">$24</p>
+                            </div>
+                            <p class="text-gray-600">With a brown butter sage sauce and lemon zest.</p>
+                        </div>
+                    </div>
+                    <!-- Entrees -->
+                    <div class="mt-12">
+                        <h2 class="text-3xl font-semibold text-brown mb-4 border-b-2 border-maroon pb-2">Entrées</h2>
+                        <div class="space-y-4">
+                            <div class="flex justify-between">
+                                <h3 class="text-xl font-bold">Filet Mignon</h3>
+                                <p class="text-xl text-maroon font-bold">$55</p>
+                            </div>
+                            <p class="text-gray-600">8oz center-cut, served with potato gratin and asparagus in a red wine reduction.</p>
+                        </div>
+                         <div class="space-y-4 mt-4">
+                            <div class="flex justify-between">
+                                <h3 class="text-xl font-bold">Pan-Seared Salmon</h3>
+                                <p class="text-xl text-maroon font-bold">$42</p>
+                            </div>
+                            <p class="text-gray-600">Crispy skin salmon over a bed of quinoa with a lemon-dill sauce.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+
+
+        <!-- Reservations Section -->
+        <section id="reservations" class="content-section">
+            <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                <h1 class="text-4xl font-bold text-maroon mb-4">Make a Reservation</h1>
+                <p class="text-lg text-gray-700 mb-8 max-w-2xl mx-auto" style="font-family: Karla;">We look forward to hosting you</p>
+                
+                <!-- OpenTable Widget Integration Area -->
+                <div id="ot-widget-container" class="max-w-md mx-auto my-8 p-4 border-2 border-dashed border-maroon rounded-lg bg-cream">
+                    <!-- 
+                        ** PASTE YOUR OPENTABLE WIDGET CODE HERE **
+                        You can get this code from your OpenTable for Restaurants account.
+                        It will typically be a <script> tag or an <iframe>.
+                        The container below is a placeholder to show where it goes.
+                    -->
+                    <div class="text-center text-brown py-8">
+                        <h3 class="text-2xl font-semibold mb-2">OpenTable Widget</h3>
+                        <p>Your reservation widget will appear here.</p>
+                    </div>
+                </div>
+                <!-- End OpenTable Widget Area -->
+
+                 <p class="text-gray-600" style="font-family: Karla;">All other inquires <a href="tel:555-123-4567" class="text-maroon hover:underline font-semibold">(555) 123-4567</a>.</p>
+            </div>
+        </section>
+
+        <!-- Hours & Location Section -->
+        <section id="hours-location" class="content-section">
+             <div class="bg-white p-8 rounded-lg shadow-lg">
+                <h1 class="text-4xl font-bold text-maroon mb-8 text-center">Hours & Location</h1>
+                <div class="flex flex-col md:flex-row gap-8">
+                    <!-- Hours -->
+                    <div class="md:w-full">
+                        <h2 class="text-3xl font-semibold text-brown mb-4">Hours of Operation</h2>
+                        <ul class="text-lg text-gray-700 space-y-15">
+                            <li style="font-family: Karla;"><span class="font-bold w-full inline-block" style="font-family: Karla;">Monday:</span> Closed</li>
+                            <li style="font-family: Karla;"><span class="font-bold w-full inline-block" style="font-family: Karla;">Tuesday-Friday:</span>         4:00 PM - Close</li>
+                            <li style="font-family: Karla;"><span class="font-bold w-full inline-block" style="font-family: Karla;">Saturday & Sunday:</span>      12:00 PM - Close</li>
+                        </ul>
+                         <h2 class="text-3xl font-semibold text-brown mt-8 mb-4">Location</h2>
+                         <p class="text-lg text-gray-700" style="font-family: Karla;">
+                             2 East Main Street<br>
+                             Branford, CT 06405
+                         </p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-maroon text-cream mt-12">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 Drea's by Goodfellas. All Rights Reserved.</p>
+            <p class="mt-2 text-sm text-cream opacity-80">Designed by Lee McPeters</p>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for single-page navigation
+        function showSection(sectionId, clickedLink) {
+            // Hide all content sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show the target section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Update active state on nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            clickedLink.classList.add('active');
+        }
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function closeMobileMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+
+    </script>
+</body>
+</html>
+
